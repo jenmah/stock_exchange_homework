@@ -8,31 +8,29 @@ List all stocks in a portfolio.
 List all clients.
 You need to create the following classes:
 
-BROKERAGE
-
+BROKERAGE:
 name
 clients
-CLIENT
 
+CLIENT:
 name
 balance
 portfolios (clue, in your initialize assign this to an empty hash or an empty array)
-PORTFOLIO
 
+PORTFOLIO:
 name
 stocks (clue, in your initialize assign this to an empty hash or an empty array)
-STOCK
 
+STOCK:
 no_of_shares
 stock_name
 share_price (Here are is link to some stock prices to reference: http://www.eoddata.com/stockList/NASDAQ.htm)
-Notes:
 
+Notes:
 Bob
 Total Balance: $ 750,000
 
 Bob’s Portfolios
-
 Tech Portfolio: AAPL, GOOG, AMZN
 Bank Portfolio: US Bank, TD Bank, BofA
 Energy Portfolio: GE, SolarWinds, GreenEnergie
@@ -52,8 +50,6 @@ def menu
   print "--> "
   gets.chomp.downcase
 end
-
-
 
 
 

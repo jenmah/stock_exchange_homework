@@ -5,6 +5,7 @@ require_relative '../lib/client'
 require_relative '../lib/portfolio'
 require_relative '../lib/stock'
 
+big_brokerage = Brokerage.new
 
 def menu
   puts `clear`
@@ -27,21 +28,20 @@ response = menu
 while response != 'q'
   case response
   when '1'
-    puts "What is the name of the animal \n"
+    puts "What is the client's name? \n"
     name = gets.chomp
-    puts "What type of animal is it: cat or dog? \n"
-    type = gets.chomp
-    puts "How old is the animal? \n"
-    age = gets.chomp.to_i
-    puts "Is the animal male or female? \n"
-    gender = gets.chomp
-    animal = Animal.new({name: name, type: type, age: age, gender: gender})
-    happitails_shelter.animals << animal
-    puts "#{name} is now in the HappiTails System. Thanks!"
+    puts "What is their account balance? \n"
+    account_balance = gets.chomp.to_i
+    puts "What portfolios does the client have? \n"
+    portfolios = gets.chomp
+    client = Client.new({name: name, account_balance: account_balance, portfolios: portfolios})
+    big_brokerage.clients << client
+    puts "#{name} is now in the system. Thanks!"
   when '2'
     list_of_animals = happitails_shelter.list_animals
   when '3'
     puts "testing"
+    binding.pry
   when '4'
     puts "testing"
   when '5'
