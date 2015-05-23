@@ -7,6 +7,11 @@ require_relative '../lib/stock'
 
 big_brokerage = Brokerage.new
 
+client_one = Client.new(name: 'Bob', account_balance: 750000, portfolios: ['tech portfolio', 'bank portfolio', 'energy_portfolio'])
+
+stock_one = Stock.new(stock_name: 'TDD', num_of_shares: '70', share_price: 50)
+
+
 def menu
   puts `clear`
   puts '*** GASE ***'
@@ -38,14 +43,21 @@ while response != 'q'
     big_brokerage.clients << client
     puts "#{name} is now in the system. Thanks!"
   when '2'
-    list_of_animals = happitails_shelter.list_animals
+    puts "What is the name of the portfolio? \n"
+    portfolio_name = gets.chomp
+    puts "What stocks are in the portfolio? \n"
+    portfolio_stocks = gets.chomp
+    portfolio = Portfolio.new({portfolio_name: portfolio_name, portfolio_stocks: portfolio_stocks})
+    # client.portfolios << portfolio
+    puts "#{portfolio_name} has been created. Thanks!"
+    binding.pry
   when '3'
     puts "testing"
     binding.pry
   when '4'
     puts "testing"
   when '5'
-    puts "testing"
+    list_of_clients_and_balances = big_brokerage.list_clients
   when '6'
     puts "testing"
   when '7'

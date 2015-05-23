@@ -1,6 +1,6 @@
 class Client
 
-  attr_accessor :clients, :balance, :portfolios
+  attr_accessor :name, :account_balance, :portfolios
 
   def initialize(options = {})
     @name = options[:name]
@@ -8,9 +8,11 @@ class Client
     @portfolios = options[:portfolios] || []
   end
 
+  # def list_balances
+  #   puts "These are our clients and their respective balances:"
+  #   clients.each { |client| puts client.name }
+  # end
+
 end
 
 
-# bob = Client.new({name: 'Bob', account_balance: 750000, portfolios: {tech_portfolio: 'AAPL', 'GOOG', 'AMZN'}, {bank_portfolio: 'US Bank', 'TD Bank'}, {energy_portfolio: 'GE', 'SolarWinds', 'GreenEnergie'}})
-
-# bob = Client.new({name: 'Bob', account_balance: 750000, portfolios: ['tech portfolio', 'bank portfolio', 'energy_portfolio']})
