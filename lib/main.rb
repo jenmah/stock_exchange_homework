@@ -17,8 +17,6 @@ stock_three = Stock.new(name: 'AAL', num_of_shares: 16113000, share_price: 42.9)
 
 big_brokerage.stocks << stock_one << stock_two << stock_three
 
-
-
 def menu
   puts `clear`
   puts '*** GASE ***'
@@ -40,7 +38,15 @@ response = menu
 while response != 'q'
   case response
   when '1'
-    create_client
+    puts "What is the client's name? \n"
+    name = gets.chomp
+    puts "What is their account balance? \n"
+    account_balance = gets.chomp.to_i
+    puts "What portfolios does the client have? \n"
+    portfolios = gets.chomp
+    client = Client.new({name: name, account_balance: account_balance, portfolios: portfolios})
+    big_brokerage.clients << client
+    puts "#{name} is now in the system. Thanks!"
   when '2'
     puts "What is the name of the portfolio? \n"
     portfolio_name = gets.chomp
@@ -66,15 +72,34 @@ while response != 'q'
       end
     end
     cost_of_purchase = @chosen_stock.share_price * shares
-    @chosen_client.account_balance - cost_of_purchase
-    @chosen_stock.num_of_shares - shares
+    @chosen_client.account_balance = @chosen_client.account_balance - cost_of_purchase
+    @chosen_stock.num_of_shares = @chosen_stock.num_of_shares - shares
     print "#{client_name} has now purchased #{shares} shares of #{stock_name} for $#{cost_of_purchase}. \n"
   when '4'
-    puts "testing"
+    puts "Which client would like to sell their stocks?"
+    client_name = gets.chomp
+    puts "Which stocks would they like to sell: AAME, AAPL, or AAL?"
+    stock_name = gets.chomp
+    puts "How many shares would they like to sell?"
+    shares = gets.chomp.to_i
+    big_brokerage.clients.each do |client|
+      if client.name == client_name
+        @chosen_client = client
+      end
+    end
+    big_brokerage.stocks.each do |stock|
+      if stock.name == stock_name
+        @chosen_stock = stock
+      end
+    end
+    amount_to_sell = (@chosen_stock.share_price * shares).ceil
+    @chosen_client.account_balance = @chosen_client.account_balance + amount_to_sell
+    @chosen_stock.num_of_shares = @chosen_stock.num_of_shares + shares
+    print "#{client_name} has now sold #{shares} shares of #{stock_name}, earning them $#{amount_to_sell}. \n"
   when '5'
     list_of_clients_and_balances = big_brokerage.list_clients
   when '6'
-    # list_of_portfolios_and_values = big_brokerage.list_portfolios
+    list_of_portfolios_and_values = big_brokerage.list_portfolios
   when '7'
     puts "testing"
   end
