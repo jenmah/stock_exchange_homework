@@ -7,10 +7,6 @@ require_relative '../lib/stock'
 
 big_brokerage = Brokerage.new
 
-client_one = Client.new(name: 'Bob', account_balance: 750000, portfolios: ['tech portfolio', 'bank portfolio', 'energy_portfolio'])
-
-big_brokerage.clients << client_one
-
 stock_one = Stock.new(name: 'AAME', num_of_shares: 3800, share_price: 3.4)
 stock_two = Stock.new(name: 'AAPL', num_of_shares: 45595900, share_price: 133.0)
 stock_three = Stock.new(name: 'AAL', num_of_shares: 16113000, share_price: 42.9)
@@ -31,7 +27,6 @@ def menu
   print "--> "
   gets.chomp
 end
-
 
 response = menu
 
